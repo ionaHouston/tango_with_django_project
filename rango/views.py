@@ -14,3 +14,6 @@ def index(request):
     context_dict['categories'] = category_list
     # Render the response and send it back!
     return render(request, 'rango/index.html', context=context_dict)       
+
+def about(request):
+      return render(request, 'rango/about.html')
