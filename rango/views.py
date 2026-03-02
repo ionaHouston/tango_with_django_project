@@ -74,3 +74,13 @@ def add_page(request, category_name_slug):
 
     context_dict = {'form': form, 'category': category}
     return render(request, 'rango/add_page.html', context=context_dict)
+
+def goto_url(request, page_id):
+    try:
+        selected_page = Page.objects.get(id=page_id)
+    except Page.DoesNotExist:
+        return redirect(reverse('rango:index'))
+    
+    selected_page.views += 1
+    selected_page.save()
+    return redirect(selected_page.url)
